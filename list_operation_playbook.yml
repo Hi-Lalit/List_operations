@@ -1,0 +1,19 @@
+- name: list operation
+  hosts: localhost
+  vars:
+    list1:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    list2:
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+  tasks:
+  - name: Print a list
+    debug:
+      msg: "{{ list1 | join(', ') | split(', ') }}"

@@ -1,0 +1,39 @@
+- name: list operation with vars file
+  hosts: localhost
+  vars_files: vars_list.yml
+
+  # create the list by passing the variables from vars_files
+
+  tasks:
+  - name: execute the list operation by taking the variables from vars files
+    debug:
+      msg: "{{ list1 | join('a')}}"
+    tags: import_vars
+
+  # print content of the list
+
+  - name: print content of the list
+    debug:
+      msg: "{{ list1 }}"
+    tags: print_list
+
+  # merge the two lists
+
+  - name: merge the two lists
+    debug:
+      msg: "{{ list1 | union(list2) }}"
+    tags: merge_list
+
+  # split the list into two lists
+
+  - name: First List
+    debug:
+      msg: "{{ list1[:3] }}"
+    tags: split_list1
+
+  # split the list into two lists
+
+  - name: Second List
+    debug:
+      msg: "{{ list1[3:] }}"
+    tags: split_list2
