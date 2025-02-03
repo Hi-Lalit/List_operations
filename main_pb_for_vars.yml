@@ -26,14 +26,7 @@
 
   # split the list into two lists
 
-  - name: First List
+  - name: First List and Second List
     debug:
-      msg: "{{ list1[:3] }}"
+      msg: "{{ list1[:3],list1[3:] }}"
     tags: split_list1
-
-  # split the list into two lists
-
-  - name: Second List
-    debug:
-      msg: "{{ list1[3:] }}"
-    tags: split_list2
