@@ -29,4 +29,4 @@
   - name: First List and Second List
     debug:
       msg: "{{ list1[:3],list1[3:] }}"
-    tags: split_list1
+    tags: split_list
