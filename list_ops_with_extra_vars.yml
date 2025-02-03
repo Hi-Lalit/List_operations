@@ -1,6 +1,5 @@
 - name: list operation with vars file
   hosts: localhost
-  vars_files: vars_list.yml
 
   # create the list by passing the variables from extra vars 
 
