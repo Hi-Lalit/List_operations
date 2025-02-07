@@ -1,0 +1,17 @@
+---
+- name: dictionary operation
+  hosts: localhost
+  vars:
+    dict1:
+      name: Leeroy Jenkins
+      age: 25
+      occupation: Astronaut
+    dict2:
+      location: Galway
+      country: Ireland
+      postcode: H71 1234
+  tasks:
+  - name: Combine dict1 and dict2 into a merged_dict var
+    debug:
+      msg: "{{ dict1 | combine(dict2) }}"
+    tags: merge_dict

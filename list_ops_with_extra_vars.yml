@@ -1,10 +1,21 @@
 - name: list operation with vars file
   hosts: localhost
+  vars:
+    list1: "{{ list1 }}"
+    list2: "{{ list2 }}"
 
-  # create the list by passing the variables from extra vars 
+  # print the list
 
   tasks:
 
-  - name: create the list by passing the variables from extra vars
+  - name: Split the list
     debug:
-      msg: "{{ list2 }}"
+      msg:
+      - "First Part: {{ list1[:3] }}"
+      - "Second Part: {{ list1[3:] }}"
+
+  # combine the two lists
+
+  - name: Combine the two lists
+    debug:
+      vars: "{{ list1 + list2 }}"

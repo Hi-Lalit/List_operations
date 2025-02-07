@@ -1,0 +1,19 @@
+- name: list operation with vars file
+  hosts: localhost
+  vars_files: vars_list.yml
+
+  # create the list by passing the variables from vars_files
+
+  tasks:
+
+  # print content of the list
+
+  - name: print content of the list
+    debug:
+      msg: "{{ list1 }}"
+    tags: print_list
+    register: list1_result
+
+  - name: print status
+    debug:
+      msg: "first list is {{ list1_result }}"

@@ -1,0 +1,16 @@
+- name: list operation with vars file
+  hosts: localhost
+  vars_files: vars_list.yml
+
+  # split the list into two lists
+  tasks:
+
+  - name: First List and Second List
+    debug:
+      msg: "{{ list1[:3],list1[3:] }}"
+    tags: split_list
+    register: split_list
+
+  - name: print the split list
+    debug:
+      msg: "Split list is {{ split_list }}"
