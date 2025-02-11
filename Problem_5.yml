@@ -1,13 +1,31 @@
 - name: Split List Operation
   hosts: localhost
   vars:
-    list1: []
+    my_list: []
+    split_size: []
+
   vars_prompt:
-  - name: required number to divide the list
-    prompt: " How many parts you want to divide the list "
+  - name: "list"
+    prompt: " Enter the list "
+    private: False
+
+  - name: "split_size"
+    prompt: "Enter the size of list to split"
     private: False
 
   tasks:
-  - name: number
+  - name: "my_list"
+    set_fact:
+      my_list: "{{ list.split(',') | map('int') | list }}"
+
+  - name: "list_size"
+    set_fact:
+      split_size: "{{ split_size.split(',') | map('int') | list }}"
+
+  - name: "print my_list"
     debug:
-      msg: "{{ list }}"
+      msg: "{{ my_list}}, length: {{ my_list | length }}"
+
+  - name: "print split_size"
+    debug:
+      msg: "{{ split_size }}, length: {{ split_size | length }}"

@@ -9,10 +9,10 @@
   - name: print both lists with their length
     debug:
       msg:
-      - " first list is: {{ list1 }}"
-      - " length of first list is: {{ list1 | length }}"
-      - " second list is: {{ list2 }}"
-      - " length of second list is: {{ list2 | length }}"
+      - "first list is: {{ list1 }}"
+      - "length of first list is: {{ list1 | length }}"
+      - "second list is: {{ list2 }}"
+      - "length of second list is: {{ list2 | length }}"
 
   - name: merge two lists
     set_fact:

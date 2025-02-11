@@ -1,0 +1,13 @@
+---
+- name: Example playbook to use shell module
+  hosts: localhost
+  tasks:
+  - name: Use shell to run multiple commands
+    shell: |
+      echo "Creating a directory..."
+      mkdir -p /home/lalit/test_directory
+      echo "Directory created!"
+      ls -la /home/lalit
+  - name: Debug the output
+    debug:
+      msg: "The ls command completed successfully."
