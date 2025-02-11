@@ -1,0 +1,35 @@
+# install 5 packages and store the result in a list after that print on the screen with package name 
+# and installation status
+---
+- name: install package and store result in a list
+  hosts: localhost
+  become_method: su
+  become_exe: sudo su -
+  vars:
+    results: []
+    package_to_install:
+    - nginx
+    - nginx1
+    - tree
+    - invalid
+
+  tasks:
+  # install packages
+  - name: Install packages
+    become: yes
+    apt:
+      name: "{{ item }}"
+      state: present
+    loop: "{{ package_to_install }}"
+    register: package_status
+    ignore_errors: yes
+    tags: install_package
+
+  - name: Print package status
+    set_fact:
+      results: "{{ results + [{'item': item.item, 'status': 'installation failed' if item.failed else 'installed successfully' }] }}"
+    loop: "{{ package_status.results }}"
+
+  - name: print results
+    debug:
+      var: results

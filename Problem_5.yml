@@ -1,0 +1,13 @@
+- name: Split List Operation
+  hosts: localhost
+  vars:
+    list1: []
+  vars_prompt:
+  - name: required number to divide the list
+    prompt: " How many parts you want to divide the list "
+    private: False
+
+  tasks:
+  - name: number
+    debug:
+      msg: "{{ list }}"

@@ -1,0 +1,14 @@
+---
+- name: Print content of the list
+  hosts: localhost
+  vars:
+    my_list: []
+
+  tasks:
+  - name: print list's content
+    debug:
+      msg: "List item: {{ item }}, is at the index: {{ list_index }} "
+    loop: "{{ my_list }}"
+    loop_control:
+      index_var: list_index
+      label: "{{ list_index }}"

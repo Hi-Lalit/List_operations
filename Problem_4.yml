@@ -1,0 +1,31 @@
+---
+- name: Merge two lists
+  hosts: localhost
+  vars:
+    list1: []
+    list2: []
+
+  tasks:
+  - name: print both lists with their length
+    debug:
+      msg:
+      - " first list is: {{ list1 }}"
+      - " length of first list is: {{ list1 | length }}"
+      - " second list is: {{ list2 }}"
+      - " length of second list is: {{ list2 | length }}"
+
+  - name: merge two lists
+    set_fact:
+      merged_list: "{{ list1 + list2 }}"
+
+  - name: print merged list
+    debug:
+      msg: "merged list is: {{ merged_list }}"
+
+  - name: length of merged list
+    debug:
+      msg: "length of merged list is: {{ merged_list | length }}"
+
+  - name: check type of list1
+    debug:
+      msg: "type of list1 is: {{ list1 | type_debug }}"
