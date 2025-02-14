@@ -1,31 +1,39 @@
 - name: Split List Operation
   hosts: localhost
+
   vars:
-    my_list: []
-    split_size: []
-
-  vars_prompt:
-  - name: "list"
-    prompt: " Enter the list "
-    private: False
-
-  - name: "split_size"
-    prompt: "Enter the size of list to split"
-    private: False
+    list: []
+    size: []
 
   tasks:
-  - name: "my_list"
+
+  - name: ensure my_list in integer
     set_fact:
-      my_list: "{{ list.split(',') | map('int') | list }}"
+      my_list: "{{ list | map('int') | list }}"
 
-  - name: "list_size"
+  - name: ensure split_size in integer
     set_fact:
-      split_size: "{{ split_size.split(',') | map('int') | list }}"
+      split_size: "{{ size | map('int') | list }}"
 
-  - name: "print my_list"
+  - name: Print my_list
     debug:
-      msg: "{{ my_list}}, length: {{ my_list | length }}"
+      msg: "my_list: {{my_list}}, length: {{my_list | length}}"
 
-  - name: "print split_size"
+  - name: Print split_size
     debug:
-      msg: "{{ split_size }}, length: {{ split_size | length }}"
+      msg: "split_size: {{split_size}}, length: {{split_size | length}}"
+
+  - name: Split my_list based on split_size
+    set_fact:
+      split_lists: []
+
+  - name: Split and print lists
+    set_fact:
+      split_lists: "{{ split_lists + [my_list[list_index: list_index + item]] }}"
+    loop: "{{ split_size }}"
+    loop_control:
+      index_var: list_index
+
+  - name: Print split lists
+    debug:
+      msg: "{{ split_lists }}"
