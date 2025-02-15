@@ -1,0 +1,18 @@
+- name: write an ansible task to list of the file and folder for the current directory
+  hosts: localhost
+  tasks:
+  - name: Show the file in current directory
+    command: ls -la ./
+    register: file_output
+
+  - name: Files in the Current Directory
+    debug:
+      var: file_output.stdout_lines
+
+  - name: Show the directory in the current directory
+    command: ls ./
+    register: dir_output
+
+  - name: Show Directory in the Current Directroy
+    debug:
+      var: dir_output.stdout_lines

@@ -29,7 +29,7 @@
 
   - name: Split and print lists
     set_fact:
-      split_lists: "{{ split_lists + [my_list[list_index: list_index + item]] }}"
+      split_lists: "{{ split_lists + [my_list[list_index: list_index + 1]] }}"
     loop: "{{ split_size }}"
     loop_control:
       index_var: list_index
