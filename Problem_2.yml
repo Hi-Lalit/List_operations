@@ -5,10 +5,6 @@
   # create the list by passing the variables from vars_files
 
   tasks:
-  - name: create a list
-    set_fact:
-      my_list: "{{ list1 }}"
-
   - name: print the list
     debug:
-      msg: "list: {{ my_list }}, length of list is: {{ my_list | length }}"
+      msg: "list: {{ list1 }}, length of list is: {{ list1 | length }}"

@@ -3,7 +3,10 @@
   hosts: localhost
   vars:
     list_var: []
+
   tasks:
   - name: create a list
     debug:
-      msg: "list: {{ list_var }}, length of list is: {{ list_var | length }}"
+      msg:
+      - "list: {{ list_var }}"
+      - "length of list is: {{ list_var | length }}"
