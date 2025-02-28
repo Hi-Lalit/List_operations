@@ -7,13 +7,13 @@
 
   tasks:
 
-  - name: ensure my_list in integer
+  - name: my_list
     set_fact:
-      my_list: "{{ list | map('int') | list }}"
+      my_list: "{{ list }}"
 
-  - name: ensure split_size in integer
+  - name: split_size
     set_fact:
-      split_size: "{{ size | map('int') | list }}"
+      split_size: "{{ size }}"
 
   - name: Print my_list
     debug:

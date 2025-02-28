@@ -2,12 +2,17 @@
 - name: Print content of the list
   hosts: localhost
   vars:
-    my_list: []
+    list: []
 
   tasks:
+
+  - name: create list
+    set_fact:
+      my_list: "{{ list }}"
+
   - name: print list's content
     debug:
-      msg: "List item: {{ item }}, is at the index: {{ list_index }} "
+      msg: "List item: {{ item }}, is at the index: {{ list_index }}, list data type: {{ my_list | type_debug }} "
     loop: "{{ my_list }}"
     loop_control:
       index_var: list_index
