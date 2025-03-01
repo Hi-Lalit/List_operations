@@ -8,7 +8,7 @@
 
   - name: convert string into the list
     set_fact:
-      list1: "{{ list_var | from_json if list_var is string else list_var }}"
+      list1: "{{ list_var }}"
 
   - name: Print a list
     debug:

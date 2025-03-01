@@ -1,10 +1,23 @@
-- name: write an ansible task to list of the file and folder for the current directory
+- name: List files and directories separately
   hosts: localhost
+  gather_facts: no
   tasks:
-  - name: Show the file & directory in the current directory
-    command: ls
-    register: dir_output
+  - name: Find directories in the current directory
+    find:
+      paths: "/home/lalit"
+      file_type: directory
+    register: dir_list
 
-  - name: Show Files & Directory in the Current Directroy
+  - name: Find files in the current directory
+    find:
+      paths: "/home/learning/list_operations"
+      file_type: file
+    register: file_list
+
+  - name: Show directories
     debug:
-      var: dir_output.stdout_lines
+      msg: "Directories: {{ dir_list.files }}"
+
+  - name: Show files
+    debug:
+      msg: "Files: {{ file_list.files }}"

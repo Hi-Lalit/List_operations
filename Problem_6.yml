@@ -33,3 +33,7 @@
   - name: print results
     debug:
       var: results
+  - name: render HTML report
+    template:
+      src: report.html.j2
+      dest: new_report.html

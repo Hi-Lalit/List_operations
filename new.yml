@@ -1,0 +1,25 @@
+---
+- name: Example Playbook with Dictionary
+  hosts: localhost
+  gather_facts: no
+  vars:
+    my_dict:
+      name: "Lalit Chauhan"
+      role: "Quality Engineer"
+      skills:
+      - Production Planning
+      - Process Optimization
+      - Team Leadership
+  tasks:
+  - name: Display Dictionary Contents
+    debug:
+      msg: "{{ my_dict }}"
+
+  - name: Access Specific Key
+    debug:
+      msg: "Name: {{ my_dict.name }}, Role: {{ my_dict.role }}"
+
+  - name: Loop through skills
+    debug:
+      msg: "Skill: {{ item }}"
+    loop: "{{ my_dict.skills }}"
